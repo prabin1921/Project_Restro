@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import include, path
 
 
-# urlpatterns = [
-#     path("admin/", admin.site.urls),
-#     path("Restro_App/", include("Restro_App.urls")),
-# ]
 urlpatterns = [
-    # path('', views.home, name='home'),
-    path('admin/', ...),  # Your admin patterns
-    path('Restro_App/', ...),  # Your Restro_App patterns
+    path("admin/", admin.site.urls),
+    path("Restro_App/", include("Restro_App.urls")),
 ]
+
+# urlpatterns = [
+#     # path('', views.home, name='home'),
+#     path('admin/', ...),  # Your admin patterns
+#     path('Restro_App/', ...),  # Your Restro_App patterns
+# ]
