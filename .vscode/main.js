@@ -1,6 +1,6 @@
 /// <reference path="c:/Users/Prabin-PC/.vscode/extensions/nur.script-0.2.1/@types/api.global.d.ts" />
 /// <reference path="c:/Users/Prabin-PC/.vscode/extensions/nur.script-0.2.1/@types/vscode.global.d.ts" />
-//  @ts-check
+// @ts-nocheck
 //  API: https://code.visualstudio.com/api/references/vscode-api
 
 function activate(_context) {
