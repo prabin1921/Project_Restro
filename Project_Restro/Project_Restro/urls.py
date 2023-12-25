@@ -19,10 +19,12 @@ from django.urls import include, path
 
 
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("Restro_App/", include("Restro_App.urls")),
     path('', include('Restro_App.urls')),
+    
     
 ]
 

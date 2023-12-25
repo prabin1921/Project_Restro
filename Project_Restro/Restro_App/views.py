@@ -3,7 +3,15 @@ from django.shortcuts import render
 # Create your views here.
 
 def home(request):
-    return render(request, "home.html", {})
+    if request.method == 'GET':
+        content = {
+            'msg': 'Hello!',
+            'page_title': 'Home'
+        }
+        return render(request, "App\home.html", content)
+    
+
+
 
 # def home(request):
 #     # View code here...
