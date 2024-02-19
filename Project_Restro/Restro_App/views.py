@@ -1,14 +1,33 @@
 from django.shortcuts import render
 
-# Create your views here.
 
+# Home View
 def home(request):
-    if request.method == 'GET':
-        content = {
-            'msg': 'Hello!',
-            'page_title': 'Home'
-        }
-        return render(request, "App\home.html", content)
+    return render(request, "home.html")
+    
+    
+# About view
+def aboutUs(request):
+    return render(request, "pages/about.html")
+
+
+# Boooking 'View    
+def booking(request):
+    return render(request, 'pages/booking.html')
+
+# conatct View
+def contact(request):
+    return render(request, 'pages/contact.html')
+
+# Menu View
+def Menu(request):
+    return render(request, 'pages/menu.html')
+
+# Service View
+def Service(request):
+    return render(request, 'pages/service.html')
+
+
     
 
 

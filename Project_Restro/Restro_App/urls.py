@@ -1,12 +1,16 @@
 
-# from django.contrib import admin
 from django.urls import path
-from . import views
-from .views import home
+from .import views
+
 
 urlpatterns = [
-    path("",home),
-    # path("home/", views.home, name ="home"),
+    path("",views.home, name = 'home'),
+    path('home/',views.home, name = 'home'),
+    path('about/', views.aboutUs, name='about'),
+    path('booking/', views.booking, name = 'booking'),
+    path('contact/', views.contact, name = 'contact'),
+    path('menu/', views.Menu, name = 'menu'),
+    path('service/', views.Service, name = 'service'),
     
     
 ]
