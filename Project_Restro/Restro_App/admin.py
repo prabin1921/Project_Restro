@@ -4,3 +4,5 @@ from .views import*
 
 # Register your models here.
 admin.site.register(BookTable)
+admin.site.register(FoodMenu)
+admin.site.register(Category)
