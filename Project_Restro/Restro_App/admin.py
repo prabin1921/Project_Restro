@@ -6,3 +6,4 @@ from .views import*
 admin.site.register(BookTable)
 admin.site.register(FoodMenu)
 admin.site.register(Category)
+admin.site.register(TablePrice)

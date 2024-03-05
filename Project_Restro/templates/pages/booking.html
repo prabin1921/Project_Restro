@@ -17,8 +17,15 @@
                 <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                     <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
                     <h1 class="text-white mb-4">Book A Table Online</h1>
-                    <form method = "POST" action = {% url 'booking' %}>
-                    {% csrf_token %}
+                    <form method = "POST" action = "{%url 'booking' %}">
+                        {% csrf_token %}
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li style ="color:red;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
@@ -34,7 +41,7 @@
                             </div>
                             <div class="col-md-6">
                             <div class="form-floating">
-                                <input type=" " class="form-control" id="Number" name="Number" placeholder="Your Number">
+                                <input type=" " class="form-control" id="Number" name="number" placeholder="Your number">
                                 <label for="Number">Number</label>
                             </div>
                             </div>
@@ -45,25 +52,43 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
+
                                 <div class="form-floating">
-                                    <select class="form-select" id="person" name="person">
+                                    <select class="form-select" id="no_people" name="no_people">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option> 
-                                        <option value="3">4</option> 
-                                        <option value="3">5</option> 
-                                        <option value="3">6</option> 
-                                        <option value="3">7</option> 
-                                        <option value="3">8</option> 
-                                        <option value="3">9</option> 
-                                        <option value="3">10</option>                        
+                                        <option value="4">4</option> 
+                                        <option value="5">5</option> 
+                                        <option value="6">6</option> 
+                                        <option value="7">7</option> 
+                                        <option value="8">8</option> 
+                                        <option value="9">9</option> 
+                                        <option value="10">10</option>                        
                                     </select>  
-                                    <label for="person">No Of People</label>
+                                    <label for="no_people">No Of People</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" id="table_no" name="table_no">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option> 
+                                        <option value="4">4</option> 
+                                        <option value="5">5</option> 
+                                        <option value="6">6</option> 
+                                        <option value="7">7</option> 
+                                        <option value="8">8</option> 
+                                        <option value="9">9</option> 
+                                        <option value="10">10</option>                        
+                                    </select>  
+                                    <label for="table_no">Table Number</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Special Request" id="message" name ="message" style="height: 100px"></textarea>
+                                    <textarea class="form-control" placeholder="Special Request" id="special_request" name ="special_request" style="height: 100px"></textarea>
                                     <label for="message">Special Request</label>
                                 </div>
                             </div>
