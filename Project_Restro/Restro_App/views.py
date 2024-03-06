@@ -1,4 +1,6 @@
-from django.shortcuts import render,redirect, HttpResponse, get_object_or_404
+from datetime import datetime 
+from django.shortcuts import (render,redirect, HttpResponse,
+                              get_object_or_404, get_list_or_404)
 from django.contrib import messages
 
 from .models import*
@@ -20,25 +22,35 @@ def aboutUs(request):
 
 # Boooking 'View    
 def booking(request):
-    # booking=BookTable.objects.all()
+    # booking=Reservation.objects.all()
     if request.method=="POST":
         name=request.POST.get("name")
         email = request.POST.get("email")
         number=request.POST.get("number")
-        datetime=request.POST.get("datetime")
-        people=request.POST.get("no_people")
-        table_no=request.POST.get("table_no")
+        date_and_time = datetime.strptime(request.POST.get("datetime"),'%Y-%m-%dT%H:%M')
+        people=request.POST.get("people")
+        table_id=request.POST.get("table_id")
         special_request=request.POST.get("special_request")
+        table = get_object_or_404(Table, pk=table_id)
+        print(table.price)
         
-        if BookTable.objects.filter(table_no = table_no).exists():
+        
+        if Reservation.objects.filter(table = table).exists():
             messages.error(request, 'This table is already Booked! Please select next one')
             return redirect('booking')
         
-        data = BookTable.objects.create(name=name, email=email, number=number, datetime=datetime, no_people=people, special_request=special_request, table_no=table_no)
+        else:
+            # table = Reservation.objects.get(table)
+            data, created = Reservation.objects.get_or_create(name =name,email=email, number= number, datetime=date_and_time, people=people, table=table, special_request=special_request )
+            # messages.alert(request, 'The price for this table is'+ (price) + 'are you sure to book?')
         
         return render(request, 'pages/booking.html', {'data':data})
     
-    return render(request, 'pages/booking.html')
+    tables = get_list_or_404(Table)
+    context = {
+        'tables': tables
+    }
+    return render(request, 'pages/booking.html',context)
 
 
 # conatct View

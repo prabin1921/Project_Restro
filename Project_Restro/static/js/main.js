@@ -54,7 +54,7 @@
     });
     
     
-    // Back to top button
+    // Back to top buttonJ
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
             $('.back-to-top').fadeIn('slow');
