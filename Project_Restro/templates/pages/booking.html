@@ -3,6 +3,11 @@
 {% load static %}
 
 {% block content %}
+<style>
+    .price-message {
+        color: red;
+    }
+</style>
   <!-- Reservation Start -->
     <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
         <div class="row g-0">
@@ -73,11 +78,13 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select class="form-select" id="table" name="table_id">
+                                    <select class="form-select" id="table_id" name="table_id">
                                         {% for table in tables %}
-                                          <option value="{{ table.id }}">{{table.table_no}}</option>                       
+                                            <option value="{{ table.id }}">{{table.table_no}}</option>                                                               
                                         {% endfor %}
-                                    </select>  
+                                    </select> 
+                                    <div id="price_display" class="price-message"></div>
+                                    <div id="price_display"></div>
                                     <label for="table">Table Number</label>
                                 </div>
                             </div>
@@ -112,6 +119,18 @@
             </div>
         </div>
     </div>
+
+    
+    <script>
+        document.getElementById("table_id").addEventListener("change", function() {
+            var tableId = this.value;
+            fetch('/get_table_price/' + tableId)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("price_display").innerHTML = "The price for this table is: " + data.table_price;
+                });
+        });
+    </script>
 {% endblock content %}
 
 

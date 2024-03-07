@@ -25,12 +25,7 @@ class Reservation(models.Model):
     def __str__(self):
         return self.name
     
-# class TablePrice(models.Model):
-#     table = models.ForeignKey(BookTable, on_delete=models.CASCADE)
-#     price = models.IntegerField(null=True, blank =True)
-    
-#     def __str__(self):
-#         return str(self.table.table_no)
+
 
 class Category(models.Model):
     name =models.CharField(max_length=30)

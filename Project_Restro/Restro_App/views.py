@@ -1,10 +1,14 @@
-from datetime import datetime 
+from datetime import datetime
+
+from django.http import JsonResponse
 from django.shortcuts import (render,redirect, HttpResponse,
                               get_object_or_404, get_list_or_404)
 from django.contrib import messages
+from django.core.mail import send_mail
 
 from .models import*
 from .forms import*
+from .utits import*
 
 
 
@@ -31,26 +35,38 @@ def booking(request):
         people=request.POST.get("people")
         table_id=request.POST.get("table_id")
         special_request=request.POST.get("special_request")
-        table = get_object_or_404(Table, pk=table_id)
-        print(table.price)
-        
+        table = get_object_or_404(Table, pk=table_id)   
         
         if Reservation.objects.filter(table = table).exists():
             messages.error(request, 'This table is already Booked! Please select next one')
             return redirect('booking')
         
         else:
-            # table = Reservation.objects.get(table)
             data, created = Reservation.objects.get_or_create(name =name,email=email, number= number, datetime=date_and_time, people=people, table=table, special_request=special_request )
-            # messages.alert(request, 'The price for this table is'+ (price) + 'are you sure to book?')
+            formatted_date_and_time = date_and_time.strftime("%B %d %Y at %I:%M %p")
+            
+            subject = "Booking Confirmed"
+            message = f"Your booking has been confirmed for: {formatted_date_and_time}! We look forward to serving you."
+            client_mail = email
+            Reservation_Mail(subject, message, client_mail)
+            
+            table_price = table.price   
+            return redirect('booking')
         
-        return render(request, 'pages/booking.html', {'data':data})
+        return render(request, 'pages/booking.html', {'data':data, 'table_price':table_price})
     
     tables = get_list_or_404(Table)
     context = {
         'tables': tables
     }
     return render(request, 'pages/booking.html',context)
+
+
+# Get Table price View
+def get_table_price(request, table_id):
+    table = get_object_or_404(Table, pk=table_id)
+    table_price = table.price
+    return JsonResponse({'table_price': table_price})
 
 
 # conatct View
@@ -94,6 +110,7 @@ def Add_Items(request, id):
 
 # Service View
 def Service(request):
+    
     return render(request, 'pages/service.html')
 
 

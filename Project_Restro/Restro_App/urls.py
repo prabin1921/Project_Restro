@@ -14,10 +14,6 @@ urlpatterns = [
     path('menu/', views.Menu, name = 'menu'),
     path('service/', views.Service, name = 'service'),
     
-    
+    path('get_table_price/<int:table_id>/', views.get_table_price, name='get_table_price')
+       
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
-# urlpatterns = [
-#     # path('', views.home, name='home'),
-#     path('admin/', ...),  # Your admin patterns
-#     path('Restro_App/', ...),  # Your Restro_App patterns
-# ]
