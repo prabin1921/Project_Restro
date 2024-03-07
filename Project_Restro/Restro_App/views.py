@@ -75,8 +75,6 @@ def contact(request):
 
 # Menu View
 def Menu(request):
-    # if request.method == 'GET':
-    #     print(request)
     categories = Category.objects.all()
     foodmenu = FoodMenu.objects.all()
     if request.method == 'POST':
@@ -114,13 +112,8 @@ def Service(request):
     return render(request, 'pages/service.html')
 
 
-    
+def CheckOut(request):
+    return render(request, 'pages/checkout.html')
 
-
-
-# def home(request):
-#     # View code here...
-#     return render(
-#         request,
-#         "C:\Users\User\Desktop\Projects\Project_Restro\Templates\Restro_App\home.html",
-#     )
+def Order(request):
+    return render(request, 'pages/orders.html')

@@ -12,8 +12,8 @@
             </div>
             <form method = 'GET' action = {% url 'menu' %}>
             {% csrf_token %}
-            <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
-                <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
+            <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s" >
+                <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5" >
                     {% for category in categories %}
                     <li class="nav-item">
                         <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#">
@@ -45,11 +45,19 @@
                             </div>
                             {% endfor %}
                         </div>
-                    {% endfor %}
-                </div>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        <button type="button" onclick="redirectToCheckout()">Order Online</button>
+                    </div>
             </div>
             </form>
         </div>
     </div>
+    <script>
+        function redirectToCheckout() {
+          window.location.href = "{% url 'checkout' %}";
+        }
+      </script>
     <!-- Menu End -->
 {% endblock content %}

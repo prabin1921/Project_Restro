@@ -13,6 +13,7 @@ urlpatterns = [
     path('contact/', views.contact, name = 'contact'),
     path('menu/', views.Menu, name = 'menu'),
     path('service/', views.Service, name = 'service'),
+    path('checkout/', views.CheckOut, name = 'checkout'),
     
     path('get_table_price/<int:table_id>/', views.get_table_price, name='get_table_price')
        

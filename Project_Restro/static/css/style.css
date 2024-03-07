@@ -1,9 +1,14 @@
 /********** Template CSS **********/
+body{
+    background-color:rgb(255, 241, 241);
+}
 :root {
-    --primary: #FEA116;
+    --primary: #fe1616;
     --light: #F1F8FF;
     --dark: #0F172B;
 }
+
+
 
 .ff-secondary {
     font-family: 'Pacifico', cursive;
@@ -478,4 +483,26 @@
     margin-right: 0;
     padding-right: 0;
     border-right: none;
+}
+
+.button{
+    color: #000000;
+    text-decoration: solid;
+}
+
+.box-element{
+    margin-top: 20px;
+	box-shadow:hsl(0, 37%, 77%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+    display: grid;
+}
+
+.hidden{
+	display: none!important;
+}
+
+h1,h2,h3,h4,h5,h6{
+	color:hsl(0, 0%, 30%);
 }
