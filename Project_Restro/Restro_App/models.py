@@ -9,8 +9,7 @@ class Table(models.Model):
     price = models.IntegerField(null=True, blank =True)
     
     def __str__(self):
-        return self.table_no
-
+        return str(self.table_no)
 class Reservation(models.Model):
     name = models.CharField( max_length=20, null = False)
     email = models.EmailField(max_length = 30, null = True, blank = True)
@@ -43,6 +42,5 @@ class FoodMenu(models.Model):
     def __str__(self):
         return self.name
         
-    
     
     

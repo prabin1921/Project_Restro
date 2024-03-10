@@ -15,6 +15,9 @@ urlpatterns = [
     path('service/', views.Service, name = 'service'),
     path('checkout/', views.CheckOut, name = 'checkout'),
     
+    path('store/', views.Store, name = 'store'),
+    # path('checkout/', views.CheckOut, name = 'checkout'),
+    
     path('get_table_price/<int:table_id>/', views.get_table_price, name='get_table_price')
        
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

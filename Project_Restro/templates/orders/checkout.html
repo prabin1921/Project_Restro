@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+
 <a  class="btn btn-outline-dark" href="{% url 'menu' %}"><h2>&#x2190; Back To Order</h2></a>
 <div class="box-element" id="form-wrapper">
     <form id="checkout-form">
@@ -34,17 +35,35 @@
         </div>
         <div>
             <h3>Choose Items..</h3>
-            <select class="form-select" id="foodmenu." name="table_id">
-                {% for item in foodmenu %}
-                    <option value="{{ item.name }}">{{ item.name }}</option>
-                {% endfor %}
-            </select>
+            <div class="dropdown">
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {% for item in items %}
+                    <label class="dropdown-item">
+                        <input type="checkbox" value="{{ item.id }}"> {{ item.name }} @Rs{{ item.price }}
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
 
         <hr>
         <input  id="form-button" class="btn btn-success btn-block" type="submit" value="Continue" >
     </form>
 </div>
+
+<script>
+    document.getElementById("foodmenu").addEventListener("change", function() {
+        var tableId = this.value;
+        fetch('/get_table_price/' + tableId)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("price_display").innerHTML = "The price for this table is: " + data.table_price;
+            });
+    });
+</script>
+
+
+
 
 
 {% endblock content %}

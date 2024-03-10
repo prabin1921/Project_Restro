@@ -48,16 +48,16 @@
                         {% endfor %}
                     </div>
                     <div>
-                        <button type="button" onclick="redirectToCheckout()">Order Online</button>
-                    </div>
+                        <button type="button" onclick="redirectToStore()"><h2><strong>Order Online</strong></h2></button>
+                    </div> 
             </div>
             </form>
         </div>
     </div>
     <script>
-        function redirectToCheckout() {
-          window.location.href = "{% url 'checkout' %}";
+        function redirectToStore() {
+          window.location.href = "{% url 'store' %}";
         }
-      </script>
+    </script>
     <!-- Menu End -->
 {% endblock content %}

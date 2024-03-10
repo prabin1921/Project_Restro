@@ -113,7 +113,18 @@ def Service(request):
 
 
 def CheckOut(request):
-    return render(request, 'pages/checkout.html')
+    items = FoodMenu.objects.all()
+    categories = Category.objects.all()
+    
+    
+    context ={'items':items}
+   
+    return render(request, 'orders/checkout.html', context)
 
-def Order(request):
-    return render(request, 'pages/orders.html')
+def Store(request):
+    
+    items = FoodMenu.objects.all()
+    context ={
+        'items':items
+    }
+    return render(request, 'orders/store.html', context)
